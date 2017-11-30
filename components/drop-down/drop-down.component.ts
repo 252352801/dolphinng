@@ -7,7 +7,6 @@ import {
 	 } from '@angular/core';
 
 @Component({
-	moduleId: module.id,
 	selector: 'drop-down',
 	templateUrl: 'drop-down.component.html',
 	styleUrls:['./drop-down.component.less']
