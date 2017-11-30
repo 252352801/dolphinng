@@ -1,0 +1,259 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "dolphinng",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "F:\\work\\dolphinng-dist"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "F:\\work\\ng2-stu\\student"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\dolphinngStarter"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "F:\\work\\dol"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\fbps_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\mgt_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@^1.1.63",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "^1.1.63",
+        "spec": ">=1.1.63 <2.0.0",
+        "type": "range"
+      },
+      "D:\\svn_workspace\\后台综合管理系统\\05源码管理\\IMS_WEB\\ims_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\svn_workspace\\后台综合管理系统\\05源码管理\\IMS_WEB\\ims_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@^1.1.64",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "^1.1.64",
+        "spec": ">=1.1.64 <2.0.0",
+        "type": "range"
+      },
+      "D:\\work\\crm_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\svn_workspace\\后台综合管理系统\\05源码管理\\IMS_WEB\\ims_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\fbps_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\svn_workspace\\后台综合管理系统\\05源码管理\\IMS_WEB\\ims_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\fbps_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\starter"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\fbps_web"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\starter\\node_modules"
+    ]
+  ],
+  "_from": "dolphinng@latest",
+  "_id": "dolphinng@1.3.12",
+  "_inCache": true,
+  "_location": "/dolphinng",
+  "_nodeVersion": "6.10.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/dolphinng-1.3.12.tgz_1511926718986_0.3111760469619185"
+  },
+  "_npmUser": {
+    "name": "weiqingyu",
+    "email": "252352801@qq.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "dolphinng@latest",
+    "scope": null,
+    "escapedName": "dolphinng",
+    "name": "dolphinng",
+    "rawSpec": "latest",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/dolphinng/-/dolphinng-1.3.12.tgz",
+  "_shasum": "f476a3f08a08d2e543c8238f43298c7fc8b7f405",
+  "_shrinkwrap": null,
+  "_spec": "dolphinng@latest",
+  "_where": "D:\\work\\starter\\node_modules",
+  "author": {
+    "name": "Qingyu Wei"
+  },
+  "dependencies": {},
+  "description": "UI for angular",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "f476a3f08a08d2e543c8238f43298c7fc8b7f405",
+    "tarball": "https://registry.npmjs.org/dolphinng/-/dolphinng-1.3.12.tgz"
+  },
+  "keywords": [
+    "ng"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "weiqingyu",
+      "email": "252352801@qq.com"
+    }
+  ],
+  "name": "dolphinng",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "typings": "./index.d.ts",
+  "version": "1.3.12"
+}
