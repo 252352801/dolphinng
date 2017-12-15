@@ -8,7 +8,6 @@ export { ModalFooterComponent };
 export declare class ModalComponent implements OnInit, OnChanges, OnDestroy {
     private elemRef;
     visible: boolean;
-    private isInputVisible;
     visibleChange: EventEmitter<any>;
     onOpen: EventEmitter<any>;
     onClose: EventEmitter<any>;
@@ -17,6 +16,7 @@ export declare class ModalComponent implements OnInit, OnChanges, OnDestroy {
     size: string;
     styleClass: string;
     fullHeight: boolean | string;
+    disabled: any;
     isRender: boolean;
     isShow: boolean;
     isReady: boolean;

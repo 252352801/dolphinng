@@ -106,6 +106,7 @@ export class Uploader {
         return;
       }
       let xhr = new XMLHttpRequest();
+      uploadFile.xhr=xhr;
       xhr.open(this.method.toLowerCase(), this.url);
       for (let o in this.headers) {//设置header
         xhr.setRequestHeader(o + '', this.headers[o + '']);

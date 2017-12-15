@@ -1,11 +1,12 @@
-import { ElementRef, OnInit, EventEmitter } from '@angular/core';
-export declare class GalleryComponent implements OnInit {
+import { ElementRef, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+export declare class GalleryComponent implements OnInit, OnDestroy {
     private eleRef;
     data: any[];
     dataProps: string[];
     size: any;
     change: EventEmitter<any>;
     title: string;
+    isFullScreen: boolean;
     images: string[];
     render: boolean;
     visible: boolean;
@@ -27,7 +28,9 @@ export declare class GalleryComponent implements OnInit {
     private windowClickHandler;
     private tween;
     constructor(eleRef: ElementRef);
+    removeEvents(): void;
     ngOnInit(): void;
+    ngOnDestroy(): void;
     /**
      * 检查是否溢出
      */
@@ -60,16 +63,16 @@ export declare class GalleryComponent implements OnInit {
     private getValueByProps(obj, pros);
     /**
      * 打开
-     * @param event 点击事件
-     * @param index 图片下标
-     * @param data 图片所在数据对象
-     * @param props 数据属性（通过这些属性逐级访问）
      */
-    open(event?: Event, index?: number, data?: any[], props?: string[]): void;
+    open(...args: any[]): void;
     /**
      * 关闭
      */
     close(): void;
+    /**
+     * 全屏切换
+     */
+    toggleFullScreen(): void;
     /**
      * 点击空白处
      */

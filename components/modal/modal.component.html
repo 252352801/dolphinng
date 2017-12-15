@@ -5,7 +5,7 @@
      [style.transition]="isTransition?'opacity .2s linear':'none'">
   <div class="modal-dialog{{this.size?' modal-'+this.size:''}}" #modalDialog
    [style.transition]="isTransition?'transform .3s ease-out':'none'">
-    <div class="modal-content">
+    <div class="modal-content" [class.disabled]="disabled">
       <a  class="modal-btn-close"  *ngIf="showCloseButton" (click)="close()">
         <span>&times;</span>
       </a>

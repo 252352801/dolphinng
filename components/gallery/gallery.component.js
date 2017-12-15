@@ -17,6 +17,7 @@ var GalleryComponent = (function () {
         this.dataProps = [];
         this.change = new core_1.EventEmitter();
         this.title = '';
+        this.isFullScreen = false; //是否全屏
         this.images = [];
         this.render = false;
         this.visible = false;
@@ -46,12 +47,19 @@ var GalleryComponent = (function () {
             }
         };
     }
+    GalleryComponent.prototype.removeEvents = function () {
+        window.removeEventListener('resize', this.resizeHandler); //取消监听
+        window.removeEventListener('click', this.windowClickHandler); //取消监听
+    };
     GalleryComponent.prototype.ngOnInit = function () {
         var elem = document.createElement('IMG');
         if (elem.style['objectFit'] !== undefined) {
             this.isSupportCssObjectFit = true;
         }
         elem = null;
+    };
+    GalleryComponent.prototype.ngOnDestroy = function () {
+        this.removeEvents();
     };
     /**
      * 检查是否溢出
@@ -189,36 +197,37 @@ var GalleryComponent = (function () {
     };
     /**
      * 打开
-     * @param event 点击事件
-     * @param index 图片下标
-     * @param data 图片所在数据对象
-     * @param props 数据属性（通过这些属性逐级访问）
      */
-    GalleryComponent.prototype.open = function (event, index, data, props) {
+    GalleryComponent.prototype.open = function () {
         var _this = this;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
         this.render = true;
         this.isShowTools = true;
+        this.isFullScreen = false;
         var dataIndex = 0; //索引
         var ev; //事件源
         var paramStrArr = []; //字符串数组参数容器
         var imgSrc = '';
-        if (arguments.length > 0) {
-            for (var i in arguments) {
-                if (arguments[i] instanceof MouseEvent) {
-                    ev = arguments[i];
+        if (args && args.length > 0) {
+            for (var i in args) {
+                if (args[i] instanceof MouseEvent) {
+                    ev = args[i];
                 }
-                if (typeof arguments[i] === 'number') {
-                    dataIndex = arguments[i];
+                if (typeof args[i] === 'number') {
+                    dataIndex = args[i];
                 }
-                if (arguments[i] instanceof Array) {
-                    paramStrArr.push(arguments[i]);
+                if (args[i] instanceof Array) {
+                    paramStrArr.push(args[i]);
                 }
-                if (typeof arguments[i] === 'string') {
+                if (typeof args[i] === 'string') {
                     if (!imgSrc) {
-                        imgSrc = arguments[i];
+                        imgSrc = args[i];
                     }
                     else {
-                        this.title = arguments[i]; //title
+                        this.title = args[i]; //title
                     }
                 }
             }
@@ -315,8 +324,13 @@ var GalleryComponent = (function () {
         setTimeout(function () {
             _this.render = false;
         }, this.transitionTime);
-        window.removeEventListener('resize', this.resizeHandler); //取消监听
-        window.removeEventListener('click', this.windowClickHandler); //取消监听
+        this.removeEvents();
+    };
+    /**
+     * 全屏切换
+     */
+    GalleryComponent.prototype.toggleFullScreen = function () {
+        this.isFullScreen = !this.isFullScreen;
     };
     /**
      * 点击空白处

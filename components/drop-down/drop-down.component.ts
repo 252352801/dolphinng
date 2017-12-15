@@ -1,5 +1,9 @@
-import { 
-	Component, 
+/**
+ * 展开/收起
+ * @author Jianhang Yu
+ */
+import {
+	Component,
 	OnInit,
 	Input,
 	ViewChild,
@@ -13,58 +17,73 @@ import {
 })
 export class DropDownComponent implements OnInit {
 	//真正控制内容的显示隐藏
-	contentShow:boolean
+	visible:boolean
 	//为了消除ngif造成的闪动，引入opacity
 	cssOpen:boolean
+	isTransition:boolean=false;
 	//设置动画时间
 	@Input() animateTime:number=0.3
 
+	@ViewChild('wrap') wrap:ElementRef;
 	@ViewChild('content') content:ElementRef;
 
+  constructor(){
+  }
 	@Input() set show(value:boolean){
-		
+
 		//传入的值为true，内容显示
 		//先获取实际内容的高度
 		let height;
-		
-		this.content.nativeElement.style.transition="height "+this.animateTime+"s"
 		if (value) {
-			this.contentShow=value
-			this.cssOpen=true
+      this.wrap.nativeElement.style.overflow='hidden';
+      this.cssOpen=true
+			this.visible=value
 			setTimeout(()=>{
-				height=this.content.nativeElement.offsetHeight
-				this.content.nativeElement.style.height=0
-				this.cssOpen=false
+        height=this.content.nativeElement.offsetHeight
+				this.wrap.nativeElement.style.height=0
+        this.isTransition=true;
 				setTimeout(()=>{
-					this.content.nativeElement.style.height=height+"px"
+          this.cssOpen=false
+          setTimeout(()=>{
+            this.wrap.nativeElement.style.height=height+"px"
+            setTimeout(()=>{
+              this.wrap.nativeElement.style.overflow=null;
+            },this.animateTime*1000)
+          })
 				})
 			})
-			
+
 		}else{
-
-			this.content.nativeElement.style.height=0
-			
+			this.wrap.nativeElement.style.height=0
+      this.wrap.nativeElement.style.overflow='hidden';
 			setTimeout(()=>{
-				this.content.nativeElement.style.height=null
-				this.contentShow=value
-
+        this.wrap.nativeElement.style.overflow=null;
+				this.wrap.nativeElement.style.height=null
+        this.isTransition=false;
+				this.visible=value
 			},this.animateTime*1000)
 		}
 	}
 
-	constructor() {}
 
 	ngOnInit() {
-		
+
 	}
 
 	open(){
-		this.show=true
+    if(!this.visible){
+      this.show=true
+    }
 	}
 
 	close(){
-		this.show=false
+    if(this.visible){
+      this.show=false
+    }
 	}
+	toggle(){
+    this.show=!this.visible
+  }
 
 
 }

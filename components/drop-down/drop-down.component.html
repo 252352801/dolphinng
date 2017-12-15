@@ -1,13 +1,6 @@
-<div>
-	<!-- 控制显示隐藏按钮部分 -->
-	<ng-content select="[data-type=dropicon]"></ng-content>
-	<!-- 显示隐藏的主体 -->
-	
-	<div  #content class="drop-content" [class.open]="cssOpen">
-		<ng-content select="[data-type=dropContent]" *ngIf="contentShow"></ng-content>
+<div  #wrap class="drop-content"  [style.transition]="isTransition?'height '+animateTime+'s':null"
+ [ngClass]="{'open':cssOpen}">
+    <div *ngIf="visible" #content>
+      <ng-content ></ng-content>
+    </div>
 	</div>
-	
-	
-	
-
-</div>	

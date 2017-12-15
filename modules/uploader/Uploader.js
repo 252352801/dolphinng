@@ -80,6 +80,7 @@ var Uploader = (function () {
                 return;
             }
             var xhr = new XMLHttpRequest();
+            uploadFile.xhr = xhr;
             xhr.open(_this.method.toLowerCase(), _this.url);
             for (var o in _this.headers) {
                 xhr.setRequestHeader(o + '', _this.headers[o + '']);

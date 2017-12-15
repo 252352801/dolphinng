@@ -3,11 +3,12 @@
   height: 254px;
   background-color: #fff;
   position: absolute;
-  z-index: 999;
+  z-index: 9999;
   border:1px solid #ddd;
   box-sizing: border-box;
   font-size: 14px;
   left: 0;
+  overflow: hidden;
 }
 .datetime-picker *{
   box-sizing: border-box;
@@ -177,4 +178,11 @@
 }
 .datetime-picker-btn:active{
   background-color: #f5f5f5;
+}
+.datetime-picker-hide{
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
 }

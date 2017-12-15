@@ -24,7 +24,6 @@ export {ModalFooterComponent};
 })
 export class ModalComponent implements OnInit,OnChanges,OnDestroy{
   @Input() visible:boolean;//是否可见
-  private isInputVisible:boolean=false;//是否有visible的输入
   @Output() visibleChange: EventEmitter<any> = new EventEmitter();
   @Output() onOpen: EventEmitter<any> = new EventEmitter();
   @Output() onClose: EventEmitter<any> = new EventEmitter();
@@ -33,6 +32,7 @@ export class ModalComponent implements OnInit,OnChanges,OnDestroy{
   @Input() size: string = "md";
   @Input() styleClass: string;
   @Input() fullHeight: boolean|string;
+  @Input() disabled:any=false;//是否禁用（有遮罩）
   isRender: boolean = false;//是否渲染
   isShow: boolean = false;//是否显示
   isReady: boolean = false;//是否已就绪
@@ -51,12 +51,7 @@ export class ModalComponent implements OnInit,OnChanges,OnDestroy{
   }
 
   ngOnInit() {
-   // this.showCloseButton=!!this.modalHeader;
-    if(this.visible===undefined){
-      this.visible=false;
-    }else{
-      this.isInputVisible=true;
-    }
+
   }
   ngOnDestroy(){
     this.testAndResetBody();
@@ -134,17 +129,15 @@ export class ModalComponent implements OnInit,OnChanges,OnDestroy{
     }
   }
   ngOnChanges(changes: SimpleChanges) {
-    if(this.isInputVisible){
-      let visibleChg = changes['visible'];
-      if (visibleChg) {
-        let isVisible = visibleChg.currentValue;
-        let prevValue = visibleChg.previousValue;
-        if (isVisible !== prevValue) {
-          if (isVisible === true) {
-            this.showModal();
-          } else if (isVisible === false) {
-            this.hideModal();
-          }
+    let visibleChg = changes['visible'];
+    if (visibleChg) {
+      let isVisible = visibleChg.currentValue;
+      let prevValue = visibleChg.previousValue;
+      if (isVisible !== prevValue) {
+        if (isVisible === true) {
+          this.showModal();
+        } else if (isVisible === false&&prevValue!==undefined) {
+          this.hideModal();
         }
       }
     }

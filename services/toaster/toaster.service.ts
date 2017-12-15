@@ -5,15 +5,12 @@ export interface  ToasterOptions{
   delay?:number;
   animated?:boolean;
 }
-
-
 export class Toaster{
   private container:HTMLElement;
   private toasters:Array<Toaster>=[];
   constructor(){
 
   }
-
   /**
    * 弹出
    * @param options
@@ -97,39 +94,44 @@ export class Toaster{
       },1500);
     },delay);
   }
-  info(title:string,message:string){
-      this.pop({
-        type:'info',
-        title:title,
-        message:message
-      });
+
+  /**
+   * 建立参数
+   * @param arguments
+   * @param type
+   * @returns {ToasterOptions}
+   */
+  private createOptions(type:string,args:any):ToasterOptions{
+    let opt:ToasterOptions={
+      type:'info',
+      message:''
+    };
+    if(['info','success','wait','warning','error'].indexOf(type)>=0){
+      opt.type=type;
+    }
+    if(args){
+      if(args.length>1){
+        opt.title=args[0];
+        opt.message=args[1];
+      }else if(args.length==1){
+        opt.message=args[0];
+      }
+    }
+    return opt;
   }
-  success(title:string,message:string){
-    this.pop({
-      type:'success',
-      title:title,
-      message:message
-    });
+  info(...args){
+    this.pop(this.createOptions('info',args));
   }
-  wait(title:string,message:string){
-    this.pop({
-      type:'wait',
-      title:title,
-      message:message
-    });
+  success(...args){
+    this.pop(this.createOptions('success',args));
   }
-  warning(title:string,message:string){
-    this.pop({
-      type:'warning',
-      title:title,
-      message:message
-    });
+  wait(...args){
+    this.pop(this.createOptions('wait',args));
   }
-  error(title:string,message:string){
-    this.pop({
-      type:'error',
-      title:title,
-      message:message
-    });
+  warning(...args){
+    this.pop(this.createOptions('warning',args));
+  }
+  error(...args){
+    this.pop(this.createOptions('error',args));
   }
 }

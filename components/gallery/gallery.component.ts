@@ -1,11 +1,11 @@
-import {Component, Input,ElementRef,OnInit,Output,EventEmitter} from '@angular/core';
+import {Component, Input,ElementRef,OnInit,OnDestroy,Output,EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.less']
 })
-export class GalleryComponent implements OnInit{
+export class GalleryComponent implements OnInit,OnDestroy{
 
   @Input() data: any[] = [];
   @Input() dataProps: string[] = [];
@@ -13,6 +13,8 @@ export class GalleryComponent implements OnInit{
   @Output() change:EventEmitter<any>=new EventEmitter();
 
   @Input() title:string='';
+
+  isFullScreen:boolean=false;//是否全屏
 
   images: string[] = [];
   render: boolean = false;
@@ -55,16 +57,22 @@ export class GalleryComponent implements OnInit{
 
   }
 
+  removeEvents(){
+    window.removeEventListener('resize', this.resizeHandler);//取消监听
+    window.removeEventListener('click', this.windowClickHandler);//取消监听
+  }
+
   ngOnInit(){
     let elem=document.createElement('IMG');
     if(elem.style['objectFit']!==undefined){
       this.isSupportCssObjectFit=true;
     }
     elem=null;
-
-
   }
 
+  ngOnDestroy(){
+    this.removeEvents();
+  }
 
   /**
    * 检查是否溢出
@@ -201,35 +209,32 @@ export class GalleryComponent implements OnInit{
 
   /**
    * 打开
-   * @param event 点击事件
-   * @param index 图片下标
-   * @param data 图片所在数据对象
-   * @param props 数据属性（通过这些属性逐级访问）
    */
-  open(event?: Event, index?: number,data?:any[],props?:string[]) {
+  open(...args) {
     this.render = true;
     this.isShowTools=true;
+    this.isFullScreen=false;
     let dataIndex = 0;//索引
     let ev;//事件源
 
     let paramStrArr=[];//字符串数组参数容器
     let imgSrc='';
-    if (arguments.length > 0) {//参数处理
-      for(let i in arguments){
-        if (arguments[i] instanceof MouseEvent) {
-          ev = arguments[i];
+    if (args&&args.length > 0) {//参数处理
+      for(let i in args){
+        if (args[i] instanceof MouseEvent) {//匹配事件源
+          ev = args[i];
         }
-        if (typeof arguments[i] === 'number') {
-          dataIndex = arguments[i];
+        if (typeof args[i] === 'number') {//匹配index
+          dataIndex = args[i];
         }
-        if(arguments[i] instanceof Array){
-          paramStrArr.push(arguments[i]);
+        if(args[i] instanceof Array){//匹配
+          paramStrArr.push(args[i]);
         }
-        if(typeof arguments[i] === 'string'){
-          if(!imgSrc){
-            imgSrc=arguments[i];
-          }else{
-            this.title=arguments[i];//title
+        if(typeof args[i] === 'string'){//匹配单个图片地址或title
+          if(!imgSrc){//第一个字符串作为单个图片的地址
+            imgSrc=args[i];
+          }else{//n+1(n=0,1,2..)第2个以及之后的字符串作为title
+            this.title=args[i];//title
           }
         }
       }
@@ -324,8 +329,14 @@ export class GalleryComponent implements OnInit{
     setTimeout(()=> {
       this.render = false;
     }, this.transitionTime);
-    window.removeEventListener('resize', this.resizeHandler);//取消监听
-    window.removeEventListener('click', this.windowClickHandler);//取消监听
+    this.removeEvents();
+  }
+
+  /**
+   * 全屏切换
+   */
+  toggleFullScreen(){
+    this.isFullScreen=!this.isFullScreen;
   }
 
   /**

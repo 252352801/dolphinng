@@ -19,6 +19,7 @@ export declare class UploadFile {
         name: string;
         value: any;
     }[];
+    xhr: XMLHttpRequest;
     constructor();
     setSuccess(): void;
     setError(): void;

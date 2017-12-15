@@ -191,16 +191,28 @@
         "type": "tag"
       },
       "D:\\work\\starter\\node_modules"
+    ],
+    [
+      {
+        "raw": "dolphinng@latest",
+        "scope": null,
+        "escapedName": "dolphinng",
+        "name": "dolphinng",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\work\\fbps_web"
     ]
   ],
   "_from": "dolphinng@latest",
-  "_id": "dolphinng@1.3.12",
+  "_id": "dolphinng@1.4.0",
   "_inCache": true,
   "_location": "/dolphinng",
   "_nodeVersion": "6.10.3",
   "_npmOperationalInternal": {
     "host": "s3://npm-registry-packages",
-    "tmp": "tmp/dolphinng-1.3.12.tgz_1511926718986_0.3111760469619185"
+    "tmp": "tmp/dolphinng-1.4.0.tgz_1512011392301_0.10480178985744715"
   },
   "_npmUser": {
     "name": "weiqingyu",
@@ -221,11 +233,11 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/dolphinng/-/dolphinng-1.3.12.tgz",
-  "_shasum": "f476a3f08a08d2e543c8238f43298c7fc8b7f405",
+  "_resolved": "https://registry.npmjs.org/dolphinng/-/dolphinng-1.4.0.tgz",
+  "_shasum": "12db4167fe478c7214dfbc74ece1a7fdff582b96",
   "_shrinkwrap": null,
   "_spec": "dolphinng@latest",
-  "_where": "D:\\work\\starter\\node_modules",
+  "_where": "D:\\work\\fbps_web",
   "author": {
     "name": "Qingyu Wei"
   },
@@ -234,9 +246,10 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "f476a3f08a08d2e543c8238f43298c7fc8b7f405",
-    "tarball": "https://registry.npmjs.org/dolphinng/-/dolphinng-1.3.12.tgz"
+    "shasum": "12db4167fe478c7214dfbc74ece1a7fdff582b96",
+    "tarball": "https://registry.npmjs.org/dolphinng/-/dolphinng-1.4.0.tgz"
   },
+  "gitHead": "9c9e6295e63178157e5905d19d32aaf7686cd748",
   "keywords": [
     "ng"
   ],
@@ -255,5 +268,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "typings": "./index.d.ts",
-  "version": "1.3.12"
+  "version": "1.4.3"
 }

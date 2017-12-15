@@ -21,6 +21,7 @@ export class UploadFile {
   customData: any;//用于存储自定义数据
   submitData: {name: string,value: any}[];//上传时候的数据
 
+  xhr:XMLHttpRequest;//上传文件的XMLHttpRequest对象
   constructor(){
     this.compressed=false;
     this.progress=0;

@@ -11,8 +11,10 @@ export declare class DatetimePickerComponent implements OnInit, OnDestroy {
     trigger: string;
     zIndex: string | number;
     isCalendar: boolean;
+    direction: string;
     complete: EventEmitter<any>;
     popover: ElementRef;
+    datetimePicker: ElementRef;
     private inputElem;
     visible: boolean;
     ready: boolean;

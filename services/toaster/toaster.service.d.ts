@@ -15,9 +15,16 @@ export declare class Toaster {
        */
     pop(options: ToasterOptions): void;
     private delayCloseTimer(toast, delay);
-    info(title: string, message: string): void;
-    success(title: string, message: string): void;
-    wait(title: string, message: string): void;
-    warning(title: string, message: string): void;
-    error(title: string, message: string): void;
+    /**
+     * 建立参数
+     * @param arguments
+     * @param type
+     * @returns {ToasterOptions}
+     */
+    private createOptions(type, args);
+    info(...args: any[]): void;
+    success(...args: any[]): void;
+    wait(...args: any[]): void;
+    warning(...args: any[]): void;
+    error(...args: any[]): void;
 }

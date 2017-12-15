@@ -16,3 +16,4 @@ export * from './nav-item/nav-item.component';
 export * from './sub-nav-item/sub-nav-item.component';
 export * from './thirth-nav-item/thirth-nav-item.component';
 export * from './datetimePicker/datetimePicker.component';
+export * from './drop-down/drop-down.component';

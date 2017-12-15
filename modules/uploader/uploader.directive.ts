@@ -38,7 +38,7 @@ export class UploaderDirective {
       uploadFile.fileSize = file.size;
       uploadFile.file = file;
       let fileNameSplit = file.name.split('.');
-      uploadFile.fileExtension = '.' + fileNameSplit[fileNameSplit.length - 1];
+      uploadFile.fileExtension = ('.' + fileNameSplit[fileNameSplit.length - 1]).toLowerCase();
 
       let check = ()=> {
         index++;

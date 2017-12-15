@@ -44,7 +44,7 @@ var UploaderDirective = (function () {
             uploadFile.fileSize = file.size;
             uploadFile.file = file;
             var fileNameSplit = file.name.split('.');
-            uploadFile.fileExtension = '.' + fileNameSplit[fileNameSplit.length - 1];
+            uploadFile.fileExtension = ('.' + fileNameSplit[fileNameSplit.length - 1]).toLowerCase();
             var check = function () {
                 index++;
                 if (index < files.length) {

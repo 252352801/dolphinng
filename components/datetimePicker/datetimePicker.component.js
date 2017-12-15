@@ -49,6 +49,7 @@ var DatetimePickerComponent = (function () {
     }
     DatetimePickerComponent.prototype.ngOnInit = function () {
         var _this = this;
+        document.body.appendChild(this.popover.nativeElement);
         {
             this.elemRef.nativeElement.style.display = 'inline-block';
             this.elemRef.nativeElement.style.position = 'relative';
@@ -361,24 +362,32 @@ var DatetimePickerComponent = (function () {
      */
     DatetimePickerComponent.prototype.setPosition = function () {
         if (this.popover && this.inputElem) {
-            var popoverH = this.popover.nativeElement.offsetHeight;
-            var popoverW = this.popover.nativeElement.offsetWidth;
-            var inputH = this.inputElem.offsetHeight;
-            var inputW = this.inputElem.offsetWidth;
+            var popoverH = this.datetimePicker.nativeElement.offsetHeight;
+            var popoverW = this.datetimePicker.nativeElement.offsetWidth;
             var rect = this.inputElem.getBoundingClientRect();
             var viewH = document.body.clientHeight;
             var viewW = document.body.clientWidth;
-            if (viewH - rect.bottom < popoverH) {
-                this.top = -popoverH;
-            }
-            else {
-                this.top = inputH;
-            }
+            var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+            var scrollTop = document.documentElement.scrollTop || document.documentElement.scrollTop;
             if (viewW - rect.left < popoverW) {
-                this.left = inputW - popoverW;
+                this.left = rect.right - popoverW + scrollLeft;
             }
             else {
-                this.left = 0;
+                this.left = rect.left + scrollLeft;
+            }
+            if (this.direction === 'bottom') {
+                this.top = rect.top - popoverH + scrollTop;
+            }
+            else if (this.direction === 'top') {
+                this.top = rect.bottom + scrollTop;
+            }
+            else {
+                if (viewH - rect.bottom < popoverH) {
+                    this.top = rect.top - popoverH + scrollTop;
+                }
+                else {
+                    this.top = rect.bottom + scrollTop;
+                }
             }
         }
         this.ready = true;
@@ -610,6 +619,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], DatetimePickerComponent.prototype, "isCalendar", void 0);
 __decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], DatetimePickerComponent.prototype, "direction", void 0);
+__decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], DatetimePickerComponent.prototype, "complete", void 0);
@@ -617,6 +630,10 @@ __decorate([
     core_1.ViewChild('popover'),
     __metadata("design:type", core_1.ElementRef)
 ], DatetimePickerComponent.prototype, "popover", void 0);
+__decorate([
+    core_1.ViewChild('datetimePicker'),
+    __metadata("design:type", core_1.ElementRef)
+], DatetimePickerComponent.prototype, "datetimePicker", void 0);
 DatetimePickerComponent = __decorate([
     core_1.Component({
         selector: 'datetime-picker',

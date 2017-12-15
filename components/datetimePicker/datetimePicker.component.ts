@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit,OnDestroy,ViewChild, EventEmitter, SimpleChanges, Input, Output} from '@angular/core';
+import {Component,Injectable, ElementRef, OnInit,OnDestroy,ViewChild, EventEmitter, SimpleChanges, Input, Output} from '@angular/core';
 @Component({
   selector: 'datetime-picker',
   templateUrl: './datetimePicker.component.html',
@@ -15,9 +15,12 @@ export class DatetimePickerComponent implements OnInit,OnDestroy {
   @Input() trigger: string = 'focus';//触发事件
   @Input() zIndex: string|number = 999;//层级
   @Input() isCalendar: boolean = false;//是否显示节日
+  @Input() direction: string;//方向 top bottom
   @Output() complete: EventEmitter<any> = new EventEmitter();//选择完成
   @ViewChild('popover') popover:ElementRef;
+  @ViewChild('datetimePicker') datetimePicker:ElementRef;
   private inputElem: HTMLInputElement;
+
   visible: boolean = false;//是否显示
   ready: boolean = false;//是否已就绪
   date: Date;//日期
@@ -38,7 +41,6 @@ export class DatetimePickerComponent implements OnInit,OnDestroy {
     day:number,
     text: string
   }[];//节日
-
   yearOptions: number[];//年选项
   monthOptions: number[];//月选项
   hoursOptions:number[];//小时选项
@@ -70,6 +72,7 @@ export class DatetimePickerComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
+    document.body.appendChild(this.popover.nativeElement);
     {//设置根元素样式
       this.elemRef.nativeElement.style.display = 'inline-block';
       this.elemRef.nativeElement.style.position = 'relative';
@@ -392,22 +395,28 @@ export class DatetimePickerComponent implements OnInit,OnDestroy {
    */
   setPosition() {
     if(this.popover&&this.inputElem){
-      let popoverH=this.popover.nativeElement.offsetHeight;
-      let popoverW=this.popover.nativeElement.offsetWidth;
-      let inputH=this.inputElem.offsetHeight;
-      let inputW=this.inputElem.offsetWidth;
+      let popoverH=this.datetimePicker.nativeElement.offsetHeight;
+      let popoverW=this.datetimePicker.nativeElement.offsetWidth;
       let rect=this.inputElem.getBoundingClientRect();
       let viewH=document.body.clientHeight;
       let viewW=document.body.clientWidth;
-      if(viewH-rect.bottom<popoverH){
-        this.top=-popoverH;
+      let scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+      let scrollTop=document.documentElement.scrollTop||document.documentElement.scrollTop;
+      if(viewW-rect.left<popoverW){//left
+        this.left=rect.right-popoverW+scrollLeft;
       }else{
-        this.top=inputH;
+        this.left=rect.left+scrollLeft;
       }
-      if(viewW-rect.left<popoverW){
-        this.left=inputW-popoverW;
+      if(this.direction==='bottom'){//top
+        this.top=rect.top-popoverH+scrollTop;
+      }else if(this.direction==='top'){
+        this.top=rect.bottom+scrollTop;
       }else{
-        this.left=0;
+        if(viewH-rect.bottom<popoverH){
+          this.top=rect.top-popoverH+scrollTop;
+        }else{
+          this.top=rect.bottom+scrollTop;
+        }
       }
     }
     this.ready=true;

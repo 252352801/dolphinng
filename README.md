@@ -39,3 +39,10 @@ v1.3.1
 1.修复datetimePicker使用display:inline-block样式时导致与其他元素嵌套/排列时样式的偏差（增加：vertical-align:middle）
 v1.3.11
 1.修复datetimePicker点击清空按钮后输入框显示null的问题
+
+v1.4.0
+1.新增drop-down组件
+
+v1.4.1
+1.日期时间选择组件datetimePicker 增加属性 direction  //top  bottom 用于固定方位
+

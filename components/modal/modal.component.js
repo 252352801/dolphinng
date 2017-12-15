@@ -19,13 +19,13 @@ exports.ModalFooterComponent = modal_footer_component_1.ModalFooterComponent;
 var ModalComponent = (function () {
     function ModalComponent(elemRef) {
         this.elemRef = elemRef;
-        this.isInputVisible = false; //是否有visible的输入
         this.visibleChange = new core_1.EventEmitter();
         this.onOpen = new core_1.EventEmitter();
         this.onClose = new core_1.EventEmitter();
         this.overflow = false; //是否溢出屏幕
         this.animated = true;
         this.size = "md";
+        this.disabled = false; //是否禁用（有遮罩）
         this.isRender = false; //是否渲染
         this.isShow = false; //是否显示
         this.isReady = false; //是否已就绪
@@ -34,13 +34,6 @@ var ModalComponent = (function () {
         this.isTransition = false;
     }
     ModalComponent.prototype.ngOnInit = function () {
-        // this.showCloseButton=!!this.modalHeader;
-        if (this.visible === undefined) {
-            this.visible = false;
-        }
-        else {
-            this.isInputVisible = true;
-        }
     };
     ModalComponent.prototype.ngOnDestroy = function () {
         this.testAndResetBody();
@@ -114,18 +107,16 @@ var ModalComponent = (function () {
         }
     };
     ModalComponent.prototype.ngOnChanges = function (changes) {
-        if (this.isInputVisible) {
-            var visibleChg = changes['visible'];
-            if (visibleChg) {
-                var isVisible = visibleChg.currentValue;
-                var prevValue = visibleChg.previousValue;
-                if (isVisible !== prevValue) {
-                    if (isVisible === true) {
-                        this.showModal();
-                    }
-                    else if (isVisible === false) {
-                        this.hideModal();
-                    }
+        var visibleChg = changes['visible'];
+        if (visibleChg) {
+            var isVisible = visibleChg.currentValue;
+            var prevValue = visibleChg.previousValue;
+            if (isVisible !== prevValue) {
+                if (isVisible === true) {
+                    this.showModal();
+                }
+                else if (isVisible === false && prevValue !== undefined) {
+                    this.hideModal();
                 }
             }
         }
@@ -215,6 +206,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], ModalComponent.prototype, "fullHeight", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], ModalComponent.prototype, "disabled", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Boolean)

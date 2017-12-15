@@ -86,40 +86,65 @@ var Toaster = (function () {
             }, 1500);
         }, delay);
     };
-    Toaster.prototype.info = function (title, message) {
-        this.pop({
+    /**
+     * 建立参数
+     * @param arguments
+     * @param type
+     * @returns {ToasterOptions}
+     */
+    Toaster.prototype.createOptions = function (type, args) {
+        var opt = {
             type: 'info',
-            title: title,
-            message: message
-        });
+            message: ''
+        };
+        if (['info', 'success', 'wait', 'warning', 'error'].indexOf(type) >= 0) {
+            opt.type = type;
+        }
+        if (args) {
+            if (args.length > 1) {
+                opt.title = args[0];
+                opt.message = args[1];
+            }
+            else if (args.length == 1) {
+                opt.message = args[0];
+            }
+        }
+        return opt;
     };
-    Toaster.prototype.success = function (title, message) {
-        this.pop({
-            type: 'success',
-            title: title,
-            message: message
-        });
+    Toaster.prototype.info = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.pop(this.createOptions('info', args));
     };
-    Toaster.prototype.wait = function (title, message) {
-        this.pop({
-            type: 'wait',
-            title: title,
-            message: message
-        });
+    Toaster.prototype.success = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.pop(this.createOptions('success', args));
     };
-    Toaster.prototype.warning = function (title, message) {
-        this.pop({
-            type: 'warning',
-            title: title,
-            message: message
-        });
+    Toaster.prototype.wait = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.pop(this.createOptions('wait', args));
     };
-    Toaster.prototype.error = function (title, message) {
-        this.pop({
-            type: 'error',
-            title: title,
-            message: message
-        });
+    Toaster.prototype.warning = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.pop(this.createOptions('warning', args));
+    };
+    Toaster.prototype.error = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.pop(this.createOptions('error', args));
     };
     return Toaster;
 }());
